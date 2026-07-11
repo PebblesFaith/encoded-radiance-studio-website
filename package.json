@@ -1,0 +1,20 @@
+{
+  "name": "encoded-radiance-studio-website",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Official Encoded Radiance Studio website and digital presentation system.",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "author": "Sarai Hannah Ajai",
+  "license": "SEE LICENSE IN LICENSE",
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

@@ -1,0 +1,1544 @@
+:root {
+  --ivory: #f7f3ea;
+  --ivory-deep: #ece4d6;
+  --gold: #c6a15b;
+  --gold-deep: #98723a;
+  --pale-blue: #c8d7e3;
+  --blue-gray: #74899b;
+  --blue-gray-deep: #43596b;
+  --ink: #17212b;
+  --glass: rgba(247, 243, 234, 0.78);
+  --line: rgba(67, 89, 107, 0.18);
+  --header-h: 78px;
+}
+* { box-sizing: border-box; }
+html { min-height: 100%; }
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--ink);
+  background: var(--ivory);
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  overflow-x: hidden;
+}
+a { color: inherit; }
+.site-shell { position: relative; min-height: 100vh; isolation: isolate; }
+.pattern-canvas, .pattern-canvas::before, .pattern-canvas::after, .pattern-text {
+  position: fixed; inset: 0; pointer-events: none;
+}
+.pattern-canvas { z-index: -5; overflow: hidden; background-color: var(--ivory); }
+.pattern-canvas::before, .pattern-canvas::after { content: ""; }
+.pattern-text { z-index: -3; overflow: hidden; font-family: "SFMono-Regular", Consolas, monospace; text-transform: uppercase; user-select: none; }
+.pattern-text span { position: absolute; white-space: nowrap; letter-spacing: .16em; font-size: clamp(.52rem,.62vw,.72rem); line-height: 1; color: var(--blue-gray-deep); opacity: .13; }
+.pattern-text .gold { color: var(--gold-deep); opacity: .16; }
+.pattern-text .pale { color: var(--blue-gray); opacity: .09; }
+.pattern-text .code-mark { font-family: Georgia, serif; font-size: clamp(6rem,18vw,16rem); letter-spacing: -.07em; opacity: .035; font-weight: 700; }
+.p1 { top: 12%; left: -2%; }
+.p2 { top: 23%; right: -4%; }
+.p3 { top: 38%; left: 7%; }
+.p4 { top: 53%; right: 5%; }
+.p5 { top: 69%; left: -3%; }
+.p6 { bottom: 8%; right: 8%; }
+.p7 { top: 9%; right: 13%; writing-mode: vertical-rl; }
+.p8 { bottom: 7%; left: 12%; writing-mode: vertical-rl; transform: rotate(180deg); }
+.code-mark { top: 49%; left: 50%; transform: translate(-50%,-50%); }
+.site-header { position: sticky; top: 0; z-index: 30; min-height: var(--header-h); border-bottom: 1px solid var(--line); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+.nav-wrap { width: min(1460px,calc(100% - 40px)); min-height: var(--header-h); margin: 0 auto; display: flex; align-items: center; gap: 24px; }
+.brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; white-space: nowrap; }
+.brand-mark { width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid rgba(152,114,58,.42); color: var(--gold-deep); background: rgba(255,255,255,.48); font-family: Georgia, serif; font-size: .82rem; }
+.brand-copy { display: grid; gap: 2px; }
+.brand-name { font-family: Georgia, serif; font-weight: 700; font-size: .98rem; }
+.brand-code { color: var(--blue-gray-deep); font-family: "SFMono-Regular", Consolas, monospace; font-size: .6rem; letter-spacing: .13em; text-transform: uppercase; }
+.site-nav { margin-left: auto; }
+.site-nav ul { display: flex; align-items: center; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.site-nav a { position: relative; display: inline-flex; align-items: center; min-height: 40px; padding: 8px 10px; border-radius: 6px; color: var(--blue-gray-deep); text-decoration: none; font-size: .72rem; font-weight: 700; letter-spacing: .055em; text-transform: uppercase; }
+.site-nav a:hover, .site-nav a:focus-visible { background: rgba(200,215,227,.25); outline: none; }
+.site-nav a[aria-current="page"] { color: var(--ink); background: rgba(255,255,255,.66); box-shadow: inset 0 0 0 1px rgba(152,114,58,.19); }
+.site-nav a[aria-current="page"]::after { content:""; position:absolute; left:10px; right:10px; bottom:4px; height:1px; background:var(--gold); }
+.nav-toggle { display:none; margin-left:auto; border:1px solid var(--line); background:rgba(255,255,255,.62); color:var(--blue-gray-deep); border-radius:7px; padding:9px 11px; font:inherit; cursor:pointer; }
+.page-stage { width:min(1460px,calc(100% - 40px)); min-height:calc(100vh - var(--header-h)); margin:0 auto; padding:clamp(52px,8vw,120px) 0 clamp(42px,6vw,80px); display:grid; align-items:end; }
+.concept-panel { width:min(680px,100%); padding:24px 26px; border:1px solid rgba(67,89,107,.19); background:rgba(247,243,234,.74); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); box-shadow:0 24px 74px rgba(67,89,107,.10); }
+.concept-kicker { margin:0 0 9px; color:var(--gold-deep); font-family:"SFMono-Regular",Consolas,monospace; font-size:.68rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; }
+.concept-panel h1 { margin:0; font-family:Georgia,"Times New Roman",serif; font-size:clamp(2.1rem,4vw,4.6rem); line-height:.98; letter-spacing:-.035em; }
+.concept-panel p:last-child { margin:13px 0 0; max-width:58ch; color:var(--blue-gray-deep); font-size:.95rem; line-height:1.65; }
+.skip-link { position:fixed; top:8px; left:8px; z-index:100; transform:translateY(-160%); padding:10px 12px; border-radius:6px; background:var(--ink); color:white; }
+.skip-link:focus { transform:translateY(0); }
+
+/* CONCEPT 1 — PRECISION BLUEPRINT */
+.concept-blueprint .site-header { background:rgba(247,243,234,.86); }
+.concept-blueprint .brand-mark { border-radius:50%; }
+.concept-blueprint .concept-panel { border-left:3px solid var(--gold); border-radius:10px; }
+.concept-blueprint .pattern-canvas { background-color:var(--ivory); background-image:linear-gradient(rgba(67,89,107,.095) 1.5px,transparent 1.5px),linear-gradient(90deg,rgba(67,89,107,.095) 1.5px,transparent 1.5px),linear-gradient(rgba(116,137,155,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(116,137,155,.045) 1px,transparent 1px); background-size:120px 120px,120px 120px,24px 24px,24px 24px; }
+.concept-blueprint .pattern-canvas::before { inset:7% 4%; border:1px solid rgba(67,89,107,.12); background:linear-gradient(var(--gold-deep),var(--gold-deep)) 0 0/34px 1px no-repeat,linear-gradient(var(--gold-deep),var(--gold-deep)) 0 0/1px 34px no-repeat,linear-gradient(var(--gold-deep),var(--gold-deep)) 100% 100%/34px 1px no-repeat,linear-gradient(var(--gold-deep),var(--gold-deep)) 100% 100%/1px 34px no-repeat; opacity:.55; }
+.concept-blueprint .pattern-canvas::after { background:linear-gradient(120deg,transparent 0 18%,rgba(200,215,227,.18) 18.1% 18.25%,transparent 18.35% 78%,rgba(198,161,91,.08) 78.1% 78.2%,transparent 78.3%); }
+.concept-blueprint.page-radio .pattern-canvas { background-image:linear-gradient(to right,rgba(67,89,107,.07) 1px,transparent 1px),linear-gradient(to bottom,rgba(116,137,155,.048) 1px,transparent 1px); background-size:96px 100%,100% 32px; }
+.concept-blueprint.page-radio .pattern-canvas::before { inset:14% -2%; border:0; background-repeat:repeat-x; background-position:center; background-size:760px 210px; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='760' height='210' viewBox='0 0 760 210'%3E%3Cpath d='M0 105 C35 105 38 82 73 82 S111 128 148 128 S186 96 221 96 S260 112 296 112 S333 72 370 72 S408 138 444 138 S482 88 518 88 S556 120 592 120 S630 101 666 101 S710 105 760 105' fill='none' stroke='%2374899b' stroke-opacity='.28' stroke-width='1.25'/%3E%3Cpath d='M0 105 C50 105 51 95 96 95 S143 116 190 116 S237 100 285 100 S333 110 380 110 S428 91 475 91 S523 122 570 122 S617 102 665 102 S713 105 760 105' fill='none' stroke='%23c6a15b' stroke-opacity='.18' stroke-width='1'/%3E%3C/svg%3E"); opacity:.7; }
+.concept-blueprint.page-license .pattern-canvas { background-image:linear-gradient(45deg,rgba(67,89,107,.03) 25%,transparent 25%,transparent 75%,rgba(67,89,107,.03) 75%),linear-gradient(-45deg,rgba(67,89,107,.03) 25%,transparent 25%,transparent 75%,rgba(67,89,107,.03) 75%),linear-gradient(to right,rgba(67,89,107,.08) 1px,transparent 1px),linear-gradient(to bottom,rgba(67,89,107,.08) 1px,transparent 1px); background-size:12px 12px,12px 12px,96px 96px,96px 96px; }
+.concept-blueprint.page-er .pattern-canvas { background-image:linear-gradient(30deg,rgba(67,89,107,.065) 1px,transparent 1px),linear-gradient(-30deg,rgba(67,89,107,.065) 1px,transparent 1px),linear-gradient(90deg,rgba(116,137,155,.045) 1px,transparent 1px); background-size:52px 30px; }
+.concept-blueprint.page-links .pattern-canvas { background-image:linear-gradient(to right,rgba(67,89,107,.06) 1px,transparent 1px),linear-gradient(to right,rgba(116,137,155,.04) 2px,transparent 2px),linear-gradient(to bottom,rgba(67,89,107,.045) 1px,transparent 1px); background-size:29px 100%,67px 100%,100% 43px; }
+.concept-blueprint.page-press .pattern-canvas { background-image:radial-gradient(circle,rgba(67,89,107,.17) 1.1px,transparent 1.3px),linear-gradient(to right,rgba(67,89,107,.04) 1px,transparent 1px),linear-gradient(to bottom,rgba(67,89,107,.04) 1px,transparent 1px); background-size:24px 24px,120px 120px,120px 120px; }
+.concept-blueprint.page-about .pattern-canvas { background-image:linear-gradient(45deg,rgba(67,89,107,.05) 1px,transparent 1px),linear-gradient(-45deg,rgba(67,89,107,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(116,137,155,.05) 1px,transparent 1px); background-size:46px 46px; }
+
+/* CONCEPT 2 — RADIANT CONSOLE */
+.concept-console .site-header { background:rgba(236,244,249,.82); }
+.concept-console .brand-mark { border-radius:7px; box-shadow:inset 0 0 0 4px rgba(200,215,227,.28); }
+.concept-console .site-nav a { border-radius:3px; }
+.concept-console .concept-panel { border-radius:3px; border-top:3px solid var(--gold); box-shadow:0 28px 80px rgba(67,89,107,.13), inset 0 0 0 1px rgba(255,255,255,.5); }
+.concept-console .pattern-canvas { background-color:var(--ivory); background-image:linear-gradient(to right,rgba(67,89,107,.06) 1px,transparent 1px),linear-gradient(to bottom,rgba(67,89,107,.045) 1px,transparent 1px); background-size:72px 72px; }
+.concept-console .pattern-canvas::before { width:38%; left:58%; background:repeating-linear-gradient(to bottom,rgba(200,215,227,.20) 0 34px,transparent 34px 68px); border-left:1px solid rgba(67,89,107,.12); border-right:1px solid rgba(67,89,107,.12); }
+.concept-console .pattern-canvas::after { inset:10% 5%; background:linear-gradient(var(--gold-deep),var(--gold-deep)) 0 0/46px 1px no-repeat,linear-gradient(var(--gold-deep),var(--gold-deep)) 0 0/1px 46px no-repeat,linear-gradient(var(--blue-gray),var(--blue-gray)) 100% 100%/46px 1px no-repeat,linear-gradient(var(--blue-gray),var(--blue-gray)) 100% 100%/1px 46px no-repeat; opacity:.38; }
+.concept-console.page-radio .pattern-canvas { background-image:linear-gradient(to right,rgba(67,89,107,.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(116,137,155,.055) 1px,transparent 1px),repeating-linear-gradient(to bottom,transparent 0 119px,rgba(198,161,91,.09) 119px 120px); background-size:64px 100%,100% 24px,100% 120px; }
+.concept-console.page-license .pattern-canvas { background-image:linear-gradient(90deg,rgba(67,89,107,.065) 1px,transparent 1px),linear-gradient(rgba(67,89,107,.05) 1px,transparent 1px),repeating-linear-gradient(90deg,transparent 0 239px,rgba(198,161,91,.08) 239px 240px); background-size:40px 40px,40px 40px,240px 100%; }
+.concept-console.page-er .pattern-canvas { background-image:linear-gradient(135deg,rgba(67,89,107,.045) 1px,transparent 1px),linear-gradient(45deg,rgba(67,89,107,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(116,137,155,.04) 1px,transparent 1px); background-size:40px 40px,40px 40px,80px 80px; }
+.concept-console.page-links .pattern-canvas { background-image:linear-gradient(to right,rgba(67,89,107,.06) 1px,transparent 1px),linear-gradient(to right,rgba(116,137,155,.035) 2px,transparent 2px),linear-gradient(to bottom,rgba(198,161,91,.055) 1px,transparent 1px); background-size:31px 100%,71px 100%,100% 52px; }
+.concept-console.page-press .pattern-canvas { background-image:radial-gradient(circle,rgba(67,89,107,.15) 1px,transparent 1.2px),linear-gradient(to bottom,rgba(67,89,107,.045) 1px,transparent 1px); background-size:28px 28px,100% 112px; }
+.concept-console.page-about .pattern-canvas { background-image:linear-gradient(60deg,rgba(67,89,107,.045) 1px,transparent 1px),linear-gradient(-60deg,rgba(67,89,107,.045) 1px,transparent 1px),linear-gradient(0deg,rgba(116,137,155,.04) 1px,transparent 1px); background-size:56px 32px; }
+
+/* CONCEPT 3 — ISOMETRIC SIGNAL */
+.concept-isometric .site-header { background:rgba(247,243,234,.79); box-shadow:0 10px 40px rgba(67,89,107,.05); }
+.concept-isometric .brand-mark { transform:rotate(45deg); border-radius:4px; }
+.concept-isometric .brand-mark span { transform:rotate(-45deg); }
+.concept-isometric .concept-panel { border-radius:18px 4px 18px 4px; border-color:rgba(67,89,107,.2); background:rgba(247,243,234,.69); }
+.concept-isometric .pattern-canvas { background-color:var(--ivory); background-image:linear-gradient(30deg,rgba(67,89,107,.065) 1px,transparent 1px),linear-gradient(-30deg,rgba(67,89,107,.065) 1px,transparent 1px),linear-gradient(90deg,rgba(116,137,155,.04) 1px,transparent 1px); background-size:52px 30px; }
+.concept-isometric .pattern-canvas::before { background:radial-gradient(circle at center,rgba(198,161,91,.12) 0 1px,transparent 1.5px) 0 0/52px 30px; }
+.concept-isometric .pattern-canvas::after { inset:14% 10%; border:1px solid rgba(67,89,107,.11); transform:skewY(-3deg); }
+.concept-isometric.page-radio .pattern-canvas { background-image:linear-gradient(25deg,rgba(67,89,107,.05) 1px,transparent 1px),linear-gradient(-25deg,rgba(67,89,107,.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(116,137,155,.045) 1px,transparent 1px); background-size:64px 36px,64px 36px,100% 36px; }
+.concept-isometric.page-license .pattern-canvas { background-image:linear-gradient(45deg,rgba(67,89,107,.045) 1px,transparent 1px),linear-gradient(-45deg,rgba(67,89,107,.045) 1px,transparent 1px),linear-gradient(to right,rgba(198,161,91,.055) 1px,transparent 1px); background-size:34px 34px,34px 34px,102px 102px; }
+.concept-isometric.page-er .pattern-canvas { background-image:linear-gradient(30deg,rgba(67,89,107,.075) 1px,transparent 1px),linear-gradient(-30deg,rgba(67,89,107,.075) 1px,transparent 1px),linear-gradient(90deg,rgba(198,161,91,.04) 1px,transparent 1px); background-size:44px 26px; }
+.concept-isometric.page-links .pattern-canvas { background-image:linear-gradient(30deg,rgba(67,89,107,.05) 1px,transparent 1px),linear-gradient(-30deg,rgba(67,89,107,.035) 1px,transparent 1px),linear-gradient(to right,rgba(116,137,155,.045) 1px,transparent 1px); background-size:58px 34px,58px 34px,29px 100%; }
+.concept-isometric.page-press .pattern-canvas { background-image:radial-gradient(circle,rgba(67,89,107,.16) 1px,transparent 1.2px),linear-gradient(30deg,rgba(67,89,107,.035) 1px,transparent 1px),linear-gradient(-30deg,rgba(67,89,107,.035) 1px,transparent 1px); background-size:26px 26px,52px 30px,52px 30px; }
+.concept-isometric.page-about .pattern-canvas { background-image:linear-gradient(60deg,rgba(67,89,107,.05) 1px,transparent 1px),linear-gradient(-60deg,rgba(67,89,107,.05) 1px,transparent 1px),linear-gradient(0deg,rgba(116,137,155,.04) 1px,transparent 1px); background-size:48px 28px; }
+
+/* CONCEPT 4 — EDITORIAL SYSTEMS */
+.concept-editorial .site-header { background:rgba(247,243,234,.91); }
+.concept-editorial .nav-wrap { align-items:stretch; }
+.concept-editorial .brand { border-right:1px solid var(--line); padding-right:22px; }
+.concept-editorial .brand-mark { border-radius:0; border-width:0 0 2px 0; background:transparent; }
+.concept-editorial .site-nav { display:flex; align-items:stretch; }
+.concept-editorial .site-nav ul { align-items:stretch; }
+.concept-editorial .site-nav a { border-radius:0; border-left:1px solid rgba(67,89,107,.08); }
+.concept-editorial .concept-panel { border-radius:0; border-width:1px 1px 1px 6px; border-left-color:var(--gold); background:rgba(247,243,234,.84); }
+.concept-editorial .pattern-canvas { background-color:var(--ivory); background-image:linear-gradient(to right,rgba(67,89,107,.055) 1px,transparent 1px),linear-gradient(to bottom,rgba(67,89,107,.035) 1px,transparent 1px); background-size:160px 100%,100% 40px; }
+.concept-editorial .pattern-canvas::before { left:8%; right:8%; background:repeating-linear-gradient(to bottom,transparent 0 79px,rgba(200,215,227,.22) 79px 120px); border-left:1px solid rgba(67,89,107,.1); border-right:1px solid rgba(67,89,107,.1); }
+.concept-editorial .pattern-canvas::after { background:linear-gradient(90deg,rgba(247,243,234,.9) 0 8%,transparent 8% 92%,rgba(247,243,234,.9) 92%); }
+.concept-editorial.page-radio .pattern-canvas { background-image:linear-gradient(to right,rgba(67,89,107,.05) 1px,transparent 1px),repeating-linear-gradient(to bottom,transparent 0 39px,rgba(116,137,155,.045) 39px 40px,transparent 40px 119px,rgba(198,161,91,.06) 119px 120px); background-size:180px 100%,100% 120px; }
+.concept-editorial.page-license .pattern-canvas { background-image:linear-gradient(to right,rgba(67,89,107,.055) 1px,transparent 1px),linear-gradient(to bottom,rgba(67,89,107,.04) 1px,transparent 1px),linear-gradient(45deg,rgba(198,161,91,.025) 1px,transparent 1px); background-size:140px 100%,100% 44px,12px 12px; }
+.concept-editorial.page-er .pattern-canvas { background-image:linear-gradient(30deg,rgba(67,89,107,.04) 1px,transparent 1px),linear-gradient(-30deg,rgba(67,89,107,.04) 1px,transparent 1px),linear-gradient(to right,rgba(116,137,155,.045) 1px,transparent 1px); background-size:52px 30px,52px 30px,156px 100%; }
+.concept-editorial.page-links .pattern-canvas { background-image:linear-gradient(to right,rgba(67,89,107,.065) 1px,transparent 1px),linear-gradient(to right,rgba(116,137,155,.035) 2px,transparent 2px),linear-gradient(to bottom,rgba(67,89,107,.04) 1px,transparent 1px); background-size:27px 100%,63px 100%,100% 48px; }
+.concept-editorial.page-press .pattern-canvas { background-image:radial-gradient(circle,rgba(67,89,107,.15) 1.05px,transparent 1.25px),linear-gradient(to right,rgba(67,89,107,.035) 1px,transparent 1px),linear-gradient(to bottom,rgba(67,89,107,.035) 1px,transparent 1px); background-size:22px 22px,132px 132px,132px 132px; }
+.concept-editorial.page-about .pattern-canvas { background-image:linear-gradient(45deg,rgba(67,89,107,.04) 1px,transparent 1px),linear-gradient(-45deg,rgba(67,89,107,.04) 1px,transparent 1px),linear-gradient(to right,rgba(116,137,155,.045) 1px,transparent 1px); background-size:48px 48px,48px 48px,144px 100%; }
+.concept-editorial .pattern-text .code-mark { left:78%; opacity:.04; }
+
+@media (max-width:1120px) {
+  .brand-name { display:none; }
+  .site-nav a { padding-inline:8px; font-size:.67rem; }
+}
+@media (max-width:900px) {
+  :root { --header-h:68px; }
+  .nav-wrap { width:min(100% - 24px,1460px); }
+  .brand-name { display:block; }
+  .nav-toggle { display:inline-flex; }
+  .site-nav { position:absolute; top:calc(100% + 1px); left:12px; right:12px; display:none; padding:10px; border:1px solid var(--line); background:rgba(247,243,234,.98); box-shadow:0 20px 50px rgba(67,89,107,.16); }
+  .site-nav.is-open { display:block; }
+  .site-nav ul { display:grid; grid-template-columns:1fr 1fr; }
+  .site-nav a { min-height:44px; border:0 !important; }
+  .page-stage { width:min(100% - 24px,1460px); }
+  .pattern-text span { opacity:.085; }
+  .pattern-text .code-mark { font-size:clamp(5rem,30vw,9rem); }
+  .concept-editorial .nav-wrap { align-items:center; }
+  .concept-editorial .brand { border-right:0; padding-right:0; }
+}
+@media (max-width:520px) {
+  .brand-name { font-size:.86rem; }
+  .brand-code { display:none; }
+  .site-nav ul { grid-template-columns:1fr; }
+  .concept-panel { padding:20px; }
+  .concept-panel h1 { font-size:2.15rem; }
+}
+@media (prefers-reduced-transparency:reduce) {
+  .site-header,.concept-panel { backdrop-filter:none; -webkit-backdrop-filter:none; background:rgba(247,243,234,.96); }
+}
+
+
+/* ================================================================
+   FREQUENCY + COLOR EXPERIMENT — July 2026
+   Frequency pages: Live Listen, ER, Press, with About radar animation.
+   Motion is intentionally slow and disabled by prefers-reduced-motion.
+   ================================================================ */
+.frequency-field,
+.frequency-field::before,
+.frequency-field::after {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+.frequency-field {
+  z-index: -4;
+  overflow: hidden;
+  contain: paint;
+}
+.frequency-field::before,
+.frequency-field::after {
+  content: "";
+  will-change: transform, background-position, opacity;
+}
+
+/* 01 — Precision Blueprint: deep drafting canvas */
+body.concept-blueprint {
+  color: #f7f3ea;
+  background: #142536;
+}
+.concept-blueprint .pattern-canvas {
+  background-color: #142536;
+  background-image:
+    linear-gradient(rgba(200,215,227,.11) 1.5px, transparent 1.5px),
+    linear-gradient(90deg, rgba(200,215,227,.11) 1.5px, transparent 1.5px),
+    linear-gradient(rgba(116,137,155,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(116,137,155,.07) 1px, transparent 1px);
+  background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
+}
+.concept-blueprint .pattern-canvas::before {
+  border-color: rgba(200,215,227,.17);
+}
+.concept-blueprint .pattern-canvas::after {
+  background: linear-gradient(120deg, transparent 0 18%, rgba(200,215,227,.11) 18.1% 18.25%, transparent 18.35% 78%, rgba(198,161,91,.10) 78.1% 78.2%, transparent 78.3%);
+}
+.concept-blueprint .pattern-text span { color: #c8d7e3; opacity: .14; }
+.concept-blueprint .pattern-text .gold { color: #d7b878; opacity: .19; }
+.concept-blueprint .pattern-text .pale { color: #95acbd; opacity: .12; }
+.concept-blueprint .pattern-text .code-mark { color: #c8d7e3; opacity: .035; }
+.concept-blueprint .site-header { background: rgba(20,37,54,.88); border-color: rgba(200,215,227,.15); }
+.concept-blueprint .brand-name { color: #f7f3ea; }
+.concept-blueprint .brand-code,
+.concept-blueprint .site-nav a { color: #c8d7e3; }
+.concept-blueprint .brand-mark { background: rgba(247,243,234,.07); color: #d7b878; border-color: rgba(215,184,120,.55); }
+.concept-blueprint .site-nav a:hover,
+.concept-blueprint .site-nav a:focus-visible { background: rgba(200,215,227,.10); }
+.concept-blueprint .site-nav a[aria-current="page"] { color: #f7f3ea; background: rgba(247,243,234,.10); box-shadow: inset 0 0 0 1px rgba(215,184,120,.25); }
+.concept-blueprint .nav-toggle { color: #f7f3ea; background: rgba(247,243,234,.08); border-color: rgba(200,215,227,.22); }
+.concept-blueprint .concept-panel { color: #17212b; background: rgba(247,243,234,.91); border-color: rgba(200,215,227,.35); box-shadow: 0 24px 74px rgba(0,0,0,.24); }
+.concept-blueprint.page-radio .pattern-canvas,
+.concept-blueprint.page-er .pattern-canvas,
+.concept-blueprint.page-press .pattern-canvas { background-color: #142536; }
+.concept-blueprint.page-radio .pattern-canvas { background-image: linear-gradient(to right,rgba(200,215,227,.09) 1px,transparent 1px),linear-gradient(to bottom,rgba(116,137,155,.08) 1px,transparent 1px); }
+.concept-blueprint.page-er .pattern-canvas { background-image: linear-gradient(30deg,rgba(200,215,227,.09) 1px,transparent 1px),linear-gradient(-30deg,rgba(200,215,227,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(116,137,155,.07) 1px,transparent 1px); }
+.concept-blueprint.page-press .pattern-canvas { background-image: radial-gradient(circle,rgba(200,215,227,.22) 1.1px,transparent 1.3px),linear-gradient(to right,rgba(200,215,227,.06) 1px,transparent 1px),linear-gradient(to bottom,rgba(200,215,227,.06) 1px,transparent 1px); }
+.concept-blueprint.page-radio .frequency-field::before {
+  inset: 32% -12% auto;
+  height: 34vh;
+  min-height: 220px;
+  background: repeating-linear-gradient(90deg, rgba(200,215,227,.28) 0 1px, transparent 1px 13px);
+  clip-path: polygon(0 49%,4% 46%,8% 52%,12% 41%,16% 58%,20% 45%,24% 54%,28% 35%,32% 63%,36% 43%,40% 52%,44% 30%,48% 68%,52% 39%,56% 57%,60% 34%,64% 65%,68% 46%,72% 55%,76% 39%,80% 61%,84% 44%,88% 53%,92% 47%,96% 51%,100% 49%,100% 52%,96% 54%,92% 50%,88% 56%,84% 47%,80% 64%,76% 42%,72% 58%,68% 49%,64% 68%,60% 37%,56% 60%,52% 42%,48% 71%,44% 33%,40% 55%,36% 46%,32% 66%,28% 38%,24% 57%,20% 48%,16% 61%,12% 44%,8% 55%,4% 49%,0 52%);
+  animation: er-blueprint-drift 18s linear infinite;
+}
+.concept-blueprint.page-radio .frequency-field::after {
+  inset: 49% 4% auto;
+  height: 1px;
+  background: linear-gradient(90deg,transparent,rgba(215,184,120,.62),transparent);
+  box-shadow: 0 -84px rgba(200,215,227,.10), 0 84px rgba(200,215,227,.10);
+}
+.concept-blueprint.page-er .frequency-field::before {
+  inset: 34% -10% auto;
+  height: 26vh;
+  min-height: 190px;
+  background: repeating-linear-gradient(90deg, transparent 0 24px, rgba(200,215,227,.24) 24px 26px, transparent 26px 49px, rgba(215,184,120,.26) 49px 51px);
+  clip-path: polygon(0 55%,7% 55%,7% 37%,14% 37%,14% 65%,22% 65%,22% 45%,31% 45%,31% 24%,39% 24%,39% 72%,49% 72%,49% 42%,59% 42%,59% 61%,69% 61%,69% 32%,78% 32%,78% 57%,88% 57%,88% 47%,100% 47%,100% 53%,88% 53%,88% 63%,78% 63%,78% 38%,69% 38%,69% 67%,59% 67%,59% 48%,49% 48%,49% 78%,39% 78%,39% 30%,31% 30%,31% 51%,22% 51%,22% 71%,14% 71%,14% 43%,7% 43%,7% 61%,0 61%);
+  animation: er-blueprint-drift 22s linear infinite reverse;
+}
+.concept-blueprint.page-press .frequency-field::before {
+  inset: 27% 4% 24%;
+  background: repeating-linear-gradient(90deg, rgba(200,215,227,.20) 0 2px, transparent 2px 17px);
+  clip-path: polygon(0 92%,3% 76%,6% 88%,9% 54%,12% 80%,15% 41%,18% 72%,21% 28%,24% 68%,27% 49%,30% 77%,33% 35%,36% 62%,39% 22%,42% 70%,45% 44%,48% 82%,51% 31%,54% 65%,57% 18%,60% 74%,63% 38%,66% 84%,69% 53%,72% 67%,75% 25%,78% 73%,81% 46%,84% 79%,87% 57%,90% 86%,93% 65%,96% 90%,100% 82%,100% 100%,0 100%);
+  animation: er-spectrum-breathe 16s ease-in-out infinite alternate;
+}
+
+/* 02 — Radiant Console: pale blue-gray system surface */
+body.concept-console { background: #dce7ec; }
+.concept-console .pattern-canvas { background-color: #dce7ec; }
+.concept-console .site-header { background: rgba(220,231,236,.90); }
+.concept-console .concept-panel { background: rgba(247,243,234,.87); }
+.concept-console .pattern-text span { opacity: .15; }
+.concept-console.page-radio .frequency-field::before {
+  inset: 24% 7% 22%;
+  background: repeating-linear-gradient(90deg, rgba(67,89,107,.23) 0 5px, transparent 5px 15px);
+  clip-path: polygon(0 88%,2% 70%,4% 80%,6% 43%,8% 68%,10% 26%,12% 57%,14% 17%,16% 51%,18% 34%,20% 72%,22% 49%,24% 82%,26% 39%,28% 64%,30% 22%,32% 55%,34% 12%,36% 48%,38% 29%,40% 75%,42% 44%,44% 84%,46% 36%,48% 61%,50% 18%,52% 52%,54% 27%,56% 70%,58% 42%,60% 79%,62% 31%,64% 58%,66% 20%,68% 47%,70% 35%,72% 73%,74% 46%,76% 81%,78% 40%,80% 62%,82% 28%,84% 54%,86% 37%,88% 69%,90% 48%,92% 77%,94% 58%,96% 84%,98% 70%,100% 88%,100% 100%,0 100%);
+  opacity: .72;
+  animation: er-console-bars 14s ease-in-out infinite alternate;
+}
+.concept-console.page-radio .frequency-field::after {
+  inset: 47% 5% auto;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(198,161,91,.58), transparent);
+  animation: er-console-scan 16s linear infinite;
+}
+.concept-console.page-er .frequency-field::before {
+  inset: 18% 9%;
+  background:
+    repeating-linear-gradient(to bottom, transparent 0 70px, rgba(67,89,107,.13) 70px 71px),
+    linear-gradient(90deg, transparent 0 9%, rgba(198,161,91,.34) 9.2% 9.5%, transparent 9.7% 27%, rgba(67,89,107,.27) 27.2% 27.5%, transparent 27.7% 48%, rgba(198,161,91,.28) 48.2% 48.5%, transparent 48.7% 72%, rgba(67,89,107,.24) 72.2% 72.5%, transparent 72.7%);
+  background-size: 100% 142px, 220% 100%;
+  animation: er-console-lanes 20s linear infinite;
+}
+.concept-console.page-press .frequency-field::before {
+  inset: 26% 8% 22%;
+  background: repeating-linear-gradient(90deg, rgba(67,89,107,.20) 0 3px, transparent 3px 12px);
+  clip-path: polygon(0 80%,4% 74%,8% 84%,12% 62%,16% 72%,20% 49%,24% 77%,28% 55%,32% 68%,36% 35%,40% 63%,44% 45%,48% 73%,52% 38%,56% 58%,60% 29%,64% 67%,68% 43%,72% 74%,76% 53%,80% 69%,84% 61%,88% 77%,92% 67%,96% 82%,100% 76%,100% 100%,0 100%);
+  animation: er-spectrum-breathe 17s ease-in-out infinite alternate;
+}
+.concept-console.page-press .frequency-field::after {
+  inset: 24% 8% 20%;
+  background: repeating-linear-gradient(to bottom, transparent 0 39px, rgba(198,161,91,.13) 39px 40px);
+}
+
+/* 03 — Isometric Signal: dark vector canvas */
+body.concept-isometric { color: #f7f3ea; background: #101a25; }
+.concept-isometric .pattern-canvas {
+  background-color: #101a25;
+  background-image: linear-gradient(30deg,rgba(200,215,227,.10) 1px,transparent 1px),linear-gradient(-30deg,rgba(200,215,227,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(116,137,155,.075) 1px,transparent 1px);
+}
+.concept-isometric .pattern-canvas::before { background: radial-gradient(circle at center,rgba(215,184,120,.20) 0 1px,transparent 1.6px) 0 0/52px 30px; }
+.concept-isometric .pattern-canvas::after { border-color: rgba(200,215,227,.15); }
+.concept-isometric .pattern-text span { color:#c8d7e3; opacity:.14; }
+.concept-isometric .pattern-text .gold { color:#d7b878; opacity:.19; }
+.concept-isometric .pattern-text .pale { color:#95acbd; opacity:.12; }
+.concept-isometric .pattern-text .code-mark { color:#c8d7e3; opacity:.035; }
+.concept-isometric .site-header { background: rgba(16,26,37,.88); border-color:rgba(200,215,227,.14); box-shadow:0 10px 40px rgba(0,0,0,.18); }
+.concept-isometric .brand-name { color:#f7f3ea; }
+.concept-isometric .brand-code,
+.concept-isometric .site-nav a { color:#c8d7e3; }
+.concept-isometric .brand-mark { background:rgba(247,243,234,.07); color:#d7b878; border-color:rgba(215,184,120,.55); }
+.concept-isometric .site-nav a:hover,
+.concept-isometric .site-nav a:focus-visible { background:rgba(200,215,227,.10); }
+.concept-isometric .site-nav a[aria-current="page"] { color:#f7f3ea; background:rgba(247,243,234,.10); box-shadow:inset 0 0 0 1px rgba(215,184,120,.25); }
+.concept-isometric .nav-toggle { color:#f7f3ea; background:rgba(247,243,234,.08); border-color:rgba(200,215,227,.22); }
+.concept-isometric .concept-panel { color:#17212b; background:rgba(247,243,234,.90); border-color:rgba(200,215,227,.35); box-shadow:0 28px 80px rgba(0,0,0,.25); }
+.concept-isometric.page-radio .pattern-canvas,
+.concept-isometric.page-er .pattern-canvas,
+.concept-isometric.page-press .pattern-canvas { background-color:#101a25; }
+.concept-isometric.page-radio .pattern-canvas { background-image:linear-gradient(25deg,rgba(200,215,227,.08) 1px,transparent 1px),linear-gradient(-25deg,rgba(200,215,227,.08) 1px,transparent 1px),linear-gradient(to bottom,rgba(116,137,155,.075) 1px,transparent 1px); }
+.concept-isometric.page-er .pattern-canvas { background-image:linear-gradient(30deg,rgba(200,215,227,.12) 1px,transparent 1px),linear-gradient(-30deg,rgba(200,215,227,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(215,184,120,.07) 1px,transparent 1px); }
+.concept-isometric.page-press .pattern-canvas { background-image:radial-gradient(circle,rgba(200,215,227,.21) 1px,transparent 1.2px),linear-gradient(30deg,rgba(200,215,227,.06) 1px,transparent 1px),linear-gradient(-30deg,rgba(200,215,227,.06) 1px,transparent 1px); }
+.concept-isometric.page-radio .frequency-field::before {
+  inset: 26% -15% 22%;
+  transform: rotate(-8deg);
+  background: repeating-linear-gradient(90deg, rgba(200,215,227,.24) 0 2px, transparent 2px 16px);
+  clip-path: polygon(0 52%,5% 47%,10% 58%,15% 39%,20% 65%,25% 44%,30% 56%,35% 30%,40% 71%,45% 42%,50% 61%,55% 35%,60% 68%,65% 47%,70% 59%,75% 38%,80% 64%,85% 46%,90% 56%,95% 49%,100% 52%,100% 56%,95% 53%,90% 60%,85% 50%,80% 68%,75% 42%,70% 63%,65% 51%,60% 72%,55% 39%,50% 65%,45% 46%,40% 75%,35% 34%,30% 60%,25% 48%,20% 69%,15% 43%,10% 62%,5% 51%,0 56%);
+  animation: er-isometric-vector 19s linear infinite;
+}
+.concept-isometric.page-radio .frequency-field::after {
+  inset: 22% 16%;
+  background: radial-gradient(circle at 18% 57%,rgba(215,184,120,.72) 0 2px,transparent 3px),radial-gradient(circle at 48% 43%,rgba(200,215,227,.55) 0 2px,transparent 3px),radial-gradient(circle at 77% 61%,rgba(215,184,120,.62) 0 2px,transparent 3px);
+  animation: er-node-pulse 12s ease-in-out infinite;
+}
+.concept-isometric.page-er .frequency-field::before {
+  inset: 20% -20%;
+  transform: rotate(30deg);
+  background: linear-gradient(90deg,transparent 0 20%,rgba(200,215,227,.10) 20% 44%,rgba(215,184,120,.55) 49.5% 50.5%,rgba(200,215,227,.10) 56% 80%,transparent 80%);
+  background-size: 220% 100%;
+  animation: er-isometric-pulse 17s linear infinite;
+}
+.concept-isometric.page-er .frequency-field::after {
+  inset:20% 10%;
+  background:radial-gradient(circle at 28% 35%,rgba(215,184,120,.52) 0 2px,transparent 3px),radial-gradient(circle at 52% 58%,rgba(200,215,227,.47) 0 2px,transparent 3px),radial-gradient(circle at 74% 42%,rgba(215,184,120,.48) 0 2px,transparent 3px);
+  animation:er-node-pulse 10s ease-in-out infinite reverse;
+}
+.concept-isometric.page-press .frequency-field::before {
+  inset: 24% 3% 19%;
+  transform: skewY(-5deg);
+  background: repeating-linear-gradient(90deg,rgba(200,215,227,.20) 0 2px,transparent 2px 14px);
+  clip-path: polygon(0 89%,4% 73%,8% 84%,12% 56%,16% 74%,20% 37%,24% 68%,28% 48%,32% 77%,36% 29%,40% 65%,44% 41%,48% 72%,52% 23%,56% 62%,60% 35%,64% 70%,68% 44%,72% 76%,76% 54%,80% 69%,84% 60%,88% 80%,92% 68%,96% 86%,100% 79%,100% 100%,0 100%);
+  animation:er-spectrum-breathe 18s ease-in-out infinite alternate;
+}
+
+/* 04 — Editorial Systems: warm technical paper */
+body.concept-editorial { background:#f1ebdd; }
+.concept-editorial .pattern-canvas { background-color:#f1ebdd; }
+.concept-editorial .site-header { background:rgba(241,235,221,.92); }
+.concept-editorial .concept-panel { background:rgba(247,243,234,.89); }
+.concept-editorial .pattern-canvas::after { background:linear-gradient(90deg,rgba(241,235,221,.9) 0 8%,transparent 8% 92%,rgba(241,235,221,.9) 92%); }
+.concept-editorial.page-radio .frequency-field::before {
+  inset: 28% 7% 24%;
+  background:
+    repeating-linear-gradient(90deg,rgba(67,89,107,.18) 0 1px,transparent 1px 11px),
+    repeating-linear-gradient(to bottom,transparent 0 39px,rgba(116,137,155,.09) 39px 40px);
+  clip-path:polygon(0 82%,3% 76%,6% 85%,9% 65%,12% 74%,15% 51%,18% 71%,21% 43%,24% 66%,27% 48%,30% 78%,33% 36%,36% 62%,39% 27%,42% 70%,45% 41%,48% 74%,51% 32%,54% 60%,57% 24%,60% 69%,63% 39%,66% 76%,69% 48%,72% 65%,75% 35%,78% 72%,81% 46%,84% 79%,87% 57%,90% 75%,93% 64%,96% 82%,100% 77%,100% 100%,0 100%);
+  animation:er-editorial-chart 22s ease-in-out infinite alternate;
+}
+.concept-editorial.page-radio .frequency-field::after {
+  inset:50% 8% auto;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(198,161,91,.55),transparent);
+}
+.concept-editorial.page-er .frequency-field::before {
+  inset: 25% 9% 22%;
+  background: repeating-linear-gradient(90deg,rgba(67,89,107,.16) 0 2px,transparent 2px 20px);
+  clip-path: polygon(0 58%,8% 58%,8% 39%,16% 39%,16% 68%,25% 68%,25% 47%,34% 47%,34% 30%,43% 30%,43% 73%,54% 73%,54% 43%,65% 43%,65% 63%,76% 63%,76% 36%,87% 36%,87% 54%,100% 54%,100% 59%,87% 59%,87% 41%,76% 41%,76% 68%,65% 68%,65% 48%,54% 48%,54% 78%,43% 78%,43% 35%,34% 35%,34% 52%,25% 52%,25% 73%,16% 73%,16% 44%,8% 44%,8% 63%,0 63%);
+  animation:er-editorial-chart 20s ease-in-out infinite alternate-reverse;
+}
+.concept-editorial.page-press .frequency-field::before {
+  inset: 23% 8% 20%;
+  background:repeating-linear-gradient(90deg,rgba(67,89,107,.19) 0 2px,transparent 2px 10px);
+  clip-path:polygon(0 91%,4% 83%,8% 88%,12% 70%,16% 82%,20% 54%,24% 76%,28% 43%,32% 68%,36% 30%,40% 61%,44% 39%,48% 71%,52% 25%,56% 58%,60% 35%,64% 67%,68% 46%,72% 75%,76% 52%,80% 69%,84% 61%,88% 78%,92% 70%,96% 86%,100% 82%,100% 100%,0 100%);
+  animation:er-spectrum-breathe 19s ease-in-out infinite alternate;
+}
+.concept-editorial.page-press .frequency-field::after {
+  inset:22% 8% 18%;
+  background:repeating-linear-gradient(to bottom,transparent 0 49px,rgba(198,161,91,.11) 49px 50px);
+}
+
+@keyframes er-blueprint-drift {
+  from { transform: translateX(-3%); }
+  to { transform: translateX(3%); }
+}
+@keyframes er-spectrum-breathe {
+  from { transform: scaleY(.90); opacity:.62; }
+  to { transform: scaleY(1.04); opacity:.82; }
+}
+@keyframes er-console-bars {
+  from { transform:scaleY(.82); opacity:.58; }
+  to { transform:scaleY(1.04); opacity:.76; }
+}
+@keyframes er-console-scan {
+  from { transform:translateX(-42%); opacity:.25; }
+  50% { opacity:.70; }
+  to { transform:translateX(42%); opacity:.25; }
+}
+@keyframes er-console-lanes {
+  from { background-position:0 0, 100% 0; }
+  to { background-position:0 142px, -100% 0; }
+}
+@keyframes er-isometric-vector {
+  from { transform:rotate(-8deg) translateX(-3%); }
+  to { transform:rotate(-8deg) translateX(3%); }
+}
+@keyframes er-isometric-pulse {
+  from { background-position:100% 0; }
+  to { background-position:-100% 0; }
+}
+@keyframes er-node-pulse {
+  0%,100% { opacity:.30; transform:scale(.99); }
+  50% { opacity:.72; transform:scale(1.01); }
+}
+@keyframes er-editorial-chart {
+  from { transform:translateY(2%) scaleY(.94); opacity:.56; }
+  to { transform:translateY(-2%) scaleY(1.02); opacity:.75; }
+}
+
+@media (max-width:900px) {
+  .concept-blueprint .site-nav,
+  .concept-isometric .site-nav { background:rgba(20,37,54,.98); }
+  .concept-isometric .site-nav { background:rgba(16,26,37,.98); }
+  .frequency-field { opacity:.72; }
+}
+@media (max-width:520px) {
+  .frequency-field { opacity:.56; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .frequency-field::before,
+  .frequency-field::after { animation:none !important; }
+}
+
+
+
+
+/* ================================================================
+   About page radar-circle animation — Isometric Signal
+   ================================================================ */
+.concept-isometric.page-about .frequency-field::before {
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  inset: auto;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(215,184,120,.62);
+  border-radius: 50%;
+  box-shadow: 0 0 28px rgba(215,184,120,.14);
+  animation: er-radar-pulse-isometric 11s cubic-bezier(.16,.68,.24,1) infinite;
+}
+.concept-isometric.page-about .frequency-field::after {
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 50%, transparent 0 72px, rgba(200,215,227,.20) 72px 73px, transparent 73px 144px, rgba(200,215,227,.12) 144px 145px, transparent 145px 216px, rgba(215,184,120,.10) 216px 217px, transparent 217px),
+    conic-gradient(from -90deg at 50% 50%, rgba(215,184,120,.10), rgba(215,184,120,.02) 18%, transparent 26% 100%),
+    linear-gradient(to right, transparent calc(50% - .5px), rgba(200,215,227,.12) calc(50% - .5px) calc(50% + .5px), transparent calc(50% + .5px)),
+    linear-gradient(to bottom, transparent calc(50% - .5px), rgba(200,215,227,.12) calc(50% - .5px) calc(50% + .5px), transparent calc(50% + .5px));
+  animation: er-radar-sweep-isometric 16s linear infinite;
+  opacity: .84;
+}
+@keyframes er-radar-pulse-isometric {
+  0%   { width: 0; height: 0; opacity: .88; }
+  68%  { width: 60vw; height: 60vw; opacity: .14; }
+  100% { width: 76vw; height: 76vw; opacity: 0; }
+}
+@keyframes er-radar-sweep-isometric {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+
+
+/* ================================================================
+   Radar visibility refinement — Isometric Signal About
+   ================================================================ */
+.concept-isometric.page-about .frequency-field { z-index: -4; }
+.concept-isometric.page-about .frequency-field::before {
+  width: 18px;
+  height: 18px;
+  background: radial-gradient(circle, rgba(215,184,120,.30) 0 20%, transparent 22% 100%);
+  animation: er-radar-pulse-isometric-refined 8.8s cubic-bezier(.16,.68,.24,1) infinite;
+}
+.concept-isometric.page-about .frequency-field::after {
+  background:
+    radial-gradient(circle at 50% 50%, transparent 0 84px, rgba(200,215,227,.24) 84px 86px, transparent 86px 168px, rgba(200,215,227,.14) 168px 170px, transparent 170px 252px, rgba(215,184,120,.12) 252px 254px, transparent 254px),
+    conic-gradient(from -90deg at 50% 50%, rgba(215,184,120,.20) 0deg, rgba(215,184,120,.03) 22deg, transparent 64deg 360deg),
+    linear-gradient(to right, transparent calc(50% - .5px), rgba(200,215,227,.12) calc(50% - .5px) calc(50% + .5px), transparent calc(50% + .5px)),
+    linear-gradient(to bottom, transparent calc(50% - .5px), rgba(200,215,227,.12) calc(50% - .5px) calc(50% + .5px), transparent calc(50% + .5px));
+  animation: er-radar-sweep-isometric-refined 13.5s linear infinite;
+  opacity: .9;
+}
+@keyframes er-radar-pulse-isometric-refined {
+  0%   { width: 0; height: 0; opacity: .9; }
+  70%  { width: 58vw; height: 58vw; opacity: .15; }
+  100% { width: 74vw; height: 74vw; opacity: 0; }
+}
+@keyframes er-radar-sweep-isometric-refined {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+
+
+
+
+/* ================================================================
+   Live Listen refinement — modern cinematic score field
+   Tchaikovsky-inspired, with sleeker orchestral motion.
+   ================================================================ */
+.concept-isometric.page-radio .frequency-field::before {
+  inset: 14% -9% 8%;
+  transform: none;
+  clip-path: none;
+  background:
+    radial-gradient(circle at 20% 54%, rgba(215,184,120,.12) 0 2px, transparent 3px),
+    radial-gradient(circle at 52% 42%, rgba(200,215,227,.10) 0 2px, transparent 3px),
+    radial-gradient(circle at 78% 60%, rgba(215,184,120,.10) 0 2px, transparent 3px),
+    linear-gradient(180deg, transparent 0 31%, rgba(200,215,227,.030) 31.2% 31.4%, transparent 31.6% 100%),
+    linear-gradient(180deg, transparent 0 64%, rgba(200,215,227,.030) 64.2% 64.4%, transparent 64.6% 100%),
+    linear-gradient(180deg, transparent 0 86%, rgba(200,215,227,.022) 86.2% 86.4%, transparent 86.6% 100%);
+  opacity: .56;
+}
+.concept-isometric.page-radio .frequency-field::after {
+  inset: 12% -8% 8%;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='1680'%20height='360'%20viewBox='0%200%201680%20360'%3E%0A%20%20%3Crect%20width='1680'%20height='360'%20fill='none'/%3E%0A%20%20%3Cg%20opacity='0.97'%3E%0A%20%20%20%20%3Cg%20stroke='rgba(200,215,227,0.14)'%20stroke-width='1'%20fill='none'%3E%0A%20%20%20%20%20%20%3Cpath%20d='M48%20136%20H1632'/%3E%3Cpath%20d='M48%20150%20H1632'/%3E%3Cpath%20d='M48%20164%20H1632'/%3E%3Cpath%20d='M48%20178%20H1632'/%3E%3Cpath%20d='M48%20192%20H1632'/%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%20%20%3Cg%20stroke='rgba(215,184,120,0.34)'%20stroke-width='1.6'%20fill='none'%20stroke-linecap='round'%3E%0A%20%20%20%20%20%20%3Cpath%20d='M48%20182%20C124%20174%20172%20132%20234%20132%20S350%20210%20428%20210%20S560%20126%20642%20126%20S794%20222%20888%20222%20S1062%20146%201148%20146%20S1326%20200%201418%20200%20S1546%20162%201632%20168'/%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%20%20%3Cg%20stroke='rgba(200,215,227,0.82)'%20fill='rgba(200,215,227,0.82)'%20stroke-width='1.8'%3E%0A%20%20%20%20%20%20%3Cellipse%20cx='150'%20cy='160'%20rx='7'%20ry='5.4'%20transform='rotate(-24%20150%20160)'/%3E%3Cpath%20d='M156%20160%20V102'/%3E%0A%20%20%20%20%20%20%3Cellipse%20cx='214'%20cy='132'%20rx='7'%20ry='5.4'%20transform='rotate(-24%20214%20132)'/%3E%3Cpath%20d='M220%20132%20V76'/%3E%0A%20%20%20%20%20%20%3Cellipse%20cx='284'%20cy='144'%20rx='7'%20ry='5.4'%20transform='rotate(-24%20284%20144)'/%3E%3Cpath%20d='M290%20144%20V88'/%3E%0A%20%20%20%20%20%20%3Cellipse%20cx='370'%20cy='194'%20rx='7'%20ry='5.4'%20transform='rotate(-24%20370%20194)'/%3E%3Cpath%20d='M376%20194%20V138'/%3E%0A%20%20%20%20%20%20%3Cellipse%20cx='432'%20cy='210'%20rx='7'%20ry='5.4'%20transform='rotate(-24%20432%20210)'/%3E%3Cpath%20d='M438%20210%20V154'/%3E%0A%20%20%20%20%20%20%3Cellipse%20cx='534'%20cy='158'%20rx='7'%20ry='5.4'%20transform='rotate(-24%20534%20158)'/%3E%3Cpath%20d='M540%20158%20V100'/%3E%0A%20%20%20%20%20%20%3Cellipse%20cx='620'%20cy='126'%20rx='7'%20ry='5.4'%20transform='rotate(-24%20620%20126)'/%3E%3Cpath%20d='M626%20126%20V70'/%3E%0A%20%20%20%20%20%20%3Cellipse%20cx='696'%20cy='148'%20rx='7'%20ry='5.4'%20transform='rotate(-24%20696%20148)'/%3E%3Cpath%20d='M702%20148%20V92'/%3E%0A%20%20%20%20%20%20%3Cellipse%20cx='808'%20cy='208'%20rx='7'%20ry='5.4'%20transform='rotate(-24%20808%20208)'/%3E%3Cpath%20d='M814%20208%20V150'/%3E%0A%20%20%20%20%20%20%3Cellipse%20cx='888'%20cy='222'%20rx='7'%20ry='5.4'%20transform='rotate(-24%20888%20222)'/%3E%3Cpath%20d='M894%20222%20V164'/%3E%0A%20%20%20%20%20%20%3Cellipse%20cx='998'%20cy='176'%20rx='7'%20ry='5.4'%20transform='rotate(-24%20998%20176)'/%3E%3Cpath%20d='M1004%20176%20V118'/%3E%0A%20%20%20%20%20%20%3Cellipse%20cx='1080'%20cy='146'%20rx='7'%20ry='5.4'%20transform='rotate(-24%201080%20146)'/%3E%3Cpath%20d='M1086%20146%20V90'/%3E%0A%20%20%20%20%20%20%3Cellipse%20cx='1162'%20cy='164'%20rx='7'%20ry='5.4'%20transform='rotate(-24%201162%20164)'/%3E%3Cpath%20d='M1168%20164%20V108'/%3E%0A%20%20%20%20%20%20%3Cellipse%20cx='1288'%20cy='188'%20rx='7'%20ry='5.4'%20transform='rotate(-24%201288%20188)'/%3E%3Cpath%20d='M1294%20188%20V130'/%3E%0A%20%20%20%20%20%20%3Cellipse%20cx='1406'%20cy='200'%20rx='7'%20ry='5.4'%20transform='rotate(-24%201406%20200)'/%3E%3Cpath%20d='M1412%20200%20V142'/%3E%0A%20%20%20%20%20%20%3Cellipse%20cx='1520'%20cy='176'%20rx='7'%20ry='5.4'%20transform='rotate(-24%201520%20176)'/%3E%3Cpath%20d='M1526%20176%20V118'/%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%20%20%3Cg%20stroke='rgba(200,215,227,0.82)'%20stroke-width='4.5'%20fill='none'%20stroke-linecap='round'%3E%0A%20%20%20%20%20%20%3Cpath%20d='M220%2078%20C242%2076%20266%2078%20290%2090'/%3E%0A%20%20%20%20%20%20%3Cpath%20d='M376%20140%20C394%20138%20416%20142%20438%20156'/%3E%0A%20%20%20%20%20%20%3Cpath%20d='M540%20102%20C566%2098%20594%20100%20626%2072'/%3E%0A%20%20%20%20%20%20%3Cpath%20d='M702%2094%20C736%2092%20772%20108%20814%20152'/%3E%0A%20%20%20%20%20%20%3Cpath%20d='M894%20166%20C930%20158%20970%20150%201004%20120'/%3E%0A%20%20%20%20%20%20%3Cpath%20d='M1086%2092%20C1112%2092%201140%2096%201168%20110'/%3E%0A%20%20%20%20%20%20%3Cpath%20d='M1294%20132%20C1328%20130%201364%20136%201412%20144'/%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%20%20%3Cg%20stroke='rgba(215,184,120,0.56)'%20stroke-width='1.5'%20fill='none'%20stroke-linecap='round'%3E%0A%20%20%20%20%20%20%3Cpath%20d='M120%20170%20C160%20140%20216%20128%20288%20144'/%3E%0A%20%20%20%20%20%20%3Cpath%20d='M344%20198%20C390%20182%20434%20176%20486%20186'/%3E%0A%20%20%20%20%20%20%3Cpath%20d='M540%20154%20C590%20118%20650%20112%20720%20146'/%3E%0A%20%20%20%20%20%20%3Cpath%20d='M788%20214%20C842%20202%20894%20196%20948%20184'/%3E%0A%20%20%20%20%20%20%3Cpath%20d='M1002%20174%20C1048%20146%201102%20142%201170%20158'/%3E%0A%20%20%20%20%20%20%3Cpath%20d='M1278%20190%20C1334%20186%201392%20188%201450%20196'/%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%20%20%3Cg%20fill='rgba(215,184,120,0.68)'%3E%0A%20%20%20%20%20%20%3Ccircle%20cx='214'%20cy='132'%20r='2.1'/%3E%3Ccircle%20cx='620'%20cy='126'%20r='2.1'/%3E%3Ccircle%20cx='1080'%20cy='146'%20r='2.1'/%3E%3Ccircle%20cx='1520'%20cy='176'%20r='2.1'/%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 1680px 360px;
+  background-position: center center;
+  animation: er-cinematic-score-drift 42s linear infinite;
+  box-shadow: none;
+  opacity: .97;
+}
+@keyframes er-cinematic-score-drift {
+  from { background-position: 0 center; }
+  to { background-position: -1680px center; }
+}
+
+
+/* ================================================================
+   Cosmic underlay experiment — soft atmospheric universe layer
+   Layer order: cosmic underlay -> pattern canvas -> frequency/radar -> content
+   ================================================================ */
+.cosmic-underlay,
+.cosmic-underlay::before,
+.cosmic-underlay::after {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+.cosmic-underlay {
+  z-index: -6;
+  overflow: hidden;
+  opacity: .55;
+}
+.cosmic-underlay::before,
+.cosmic-underlay::after {
+  content: "";
+}
+.cosmic-underlay::before {
+  background-image:
+    radial-gradient(circle at 18% 24%, rgba(247,243,234,.95) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 72% 18%, rgba(200,215,227,.82) 0 1.1px, transparent 1.9px),
+    radial-gradient(circle at 84% 42%, rgba(247,243,234,.88) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 26% 58%, rgba(215,184,120,.74) 0 1.1px, transparent 2px),
+    radial-gradient(circle at 62% 68%, rgba(200,215,227,.78) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 14% 82%, rgba(247,243,234,.74) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 90% 78%, rgba(215,184,120,.62) 0 1px, transparent 1.9px),
+    radial-gradient(circle at 38% 12%, rgba(200,215,227,.64) 0 .9px, transparent 1.6px),
+    radial-gradient(circle at 56% 34%, rgba(247,243,234,.55) 0 .9px, transparent 1.5px),
+    radial-gradient(circle at 48% 88%, rgba(200,215,227,.48) 0 .9px, transparent 1.5px),
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,.24) 0 .8px, transparent 1.4px);
+  background-size:
+    340px 240px,
+    420px 260px,
+    520px 360px,
+    620px 420px,
+    460px 300px,
+    540px 360px,
+    700px 480px,
+    360px 220px,
+    580px 380px,
+    660px 440px,
+    240px 180px;
+  opacity: .72;
+}
+.cosmic-underlay::after {
+  background:
+    radial-gradient(ellipse at 18% 22%, rgba(200,215,227,.16) 0%, rgba(200,215,227,.08) 16%, transparent 38%),
+    radial-gradient(ellipse at 78% 18%, rgba(215,184,120,.12) 0%, rgba(215,184,120,.06) 14%, transparent 34%),
+    radial-gradient(ellipse at 70% 76%, rgba(200,215,227,.10) 0%, rgba(200,215,227,.04) 18%, transparent 38%),
+    radial-gradient(ellipse at 24% 72%, rgba(215,184,120,.10) 0%, rgba(215,184,120,.035) 16%, transparent 34%);
+  filter: blur(18px);
+  opacity: .56;
+}
+
+/* Page intensity rhythm */
+.page-home .cosmic-underlay { opacity: .66; }
+.page-radio .cosmic-underlay { opacity: .62; }
+.page-license .cosmic-underlay { opacity: .20; }
+.page-er .cosmic-underlay { opacity: .82; }
+.page-links .cosmic-underlay { opacity: .18; }
+.page-press .cosmic-underlay { opacity: .28; }
+.page-about .cosmic-underlay { opacity: .58; }
+
+/* Precision Blueprint: faint, disciplined space layer */
+.concept-blueprint .cosmic-underlay::after {
+  background:
+    radial-gradient(ellipse at 16% 24%, rgba(200,215,227,.18) 0%, rgba(200,215,227,.08) 14%, transparent 34%),
+    radial-gradient(ellipse at 80% 22%, rgba(215,184,120,.11) 0%, rgba(215,184,120,.05) 12%, transparent 30%),
+    radial-gradient(ellipse at 68% 78%, rgba(200,215,227,.08) 0%, rgba(200,215,227,.03) 18%, transparent 36%);
+}
+
+/* Isometric Signal: slightly more cinematic cosmic layer */
+.concept-isometric .cosmic-underlay::after {
+  background:
+    radial-gradient(ellipse at 15% 20%, rgba(200,215,227,.18) 0%, rgba(200,215,227,.08) 18%, transparent 38%),
+    radial-gradient(ellipse at 78% 18%, rgba(215,184,120,.14) 0%, rgba(215,184,120,.06) 16%, transparent 34%),
+    radial-gradient(ellipse at 72% 74%, rgba(200,215,227,.12) 0%, rgba(200,215,227,.05) 20%, transparent 40%),
+    radial-gradient(ellipse at 26% 78%, rgba(215,184,120,.11) 0%, rgba(215,184,120,.045) 16%, transparent 36%);
+}
+
+@media (max-width: 900px) {
+  .cosmic-underlay::after { filter: blur(14px); }
+  .page-home .cosmic-underlay,
+  .page-radio .cosmic-underlay,
+  .page-er .cosmic-underlay,
+  .page-about .cosmic-underlay { opacity: .52; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cosmic-underlay,
+  .cosmic-underlay::before,
+  .cosmic-underlay::after {
+    animation: none !important;
+  }
+}
+
+
+/* ================================================================
+   COSMIC VISIBILITY CORRECTION
+   The original cosmic field was behind the opaque grid canvas.
+   This correction places it above the canvas but below all technical text,
+   radar, score, navigation, and content layers.
+   ================================================================ */
+.cosmic-underlay {
+  z-index: -4;
+  mix-blend-mode: screen;
+}
+.frequency-field {
+  z-index: -3;
+}
+.pattern-text {
+  z-index: -2;
+}
+
+/* Keep the grid readable while allowing the cosmic atmosphere through. */
+.concept-blueprint .pattern-canvas,
+.concept-blueprint.page-radio .pattern-canvas,
+.concept-blueprint.page-er .pattern-canvas,
+.concept-blueprint.page-press .pattern-canvas {
+  background-color: rgba(20,37,54,.86);
+}
+.concept-isometric .pattern-canvas,
+.concept-isometric.page-radio .pattern-canvas,
+.concept-isometric.page-er .pattern-canvas,
+.concept-isometric.page-press .pattern-canvas {
+  background-color: rgba(16,26,37,.84);
+}
+
+/* More visible but still restrained stars and haze. */
+.cosmic-underlay::before {
+  opacity: .92;
+  filter: drop-shadow(0 0 3px rgba(200,215,227,.18));
+}
+.cosmic-underlay::after {
+  opacity: .72;
+  filter: blur(16px);
+}
+
+.page-home .cosmic-underlay { opacity: .78; }
+.page-radio .cosmic-underlay { opacity: .72; }
+.page-license .cosmic-underlay { opacity: .26; }
+.page-er .cosmic-underlay { opacity: .92; }
+.page-links .cosmic-underlay { opacity: .23; }
+.page-press .cosmic-underlay { opacity: .34; }
+.page-about .cosmic-underlay { opacity: .70; }
+
+/* Preserve foreground readability. */
+.site-header,
+.concept-panel {
+  isolation: isolate;
+}
+
+@media (max-width: 900px) {
+  .page-home .cosmic-underlay,
+  .page-radio .cosmic-underlay,
+  .page-er .cosmic-underlay,
+  .page-about .cosmic-underlay { opacity: .62; }
+}
+
+
+/* ================================================================
+   Slow animated background text layer
+   Subtle drift, crawl, pulse, and parallax for a premium motion finish.
+   ================================================================ */
+.pattern-text span {
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+/* Base motion assignments */
+.page-home .pattern-text .p1,
+.page-home .pattern-text .p3,
+.page-home .pattern-text .p5,
+.page-er .pattern-text .p1,
+.page-er .pattern-text .p3,
+.page-links .pattern-text .p1 {
+  animation-name: er-drift-left;
+  animation-duration: 34s;
+}
+
+.page-home .pattern-text .p2,
+.page-home .pattern-text .p4,
+.page-er .pattern-text .p2,
+.page-er .pattern-text .p4,
+.page-live .pattern-text .p2,
+.page-radio .pattern-text .p2,
+.page-radio .pattern-text .p4,
+.page-links .pattern-text .p2 {
+  animation-name: er-drift-right;
+  animation-duration: 38s;
+}
+
+.page-license .pattern-text .p1,
+.page-license .pattern-text .p3,
+.page-press .pattern-text .p1,
+.page-press .pattern-text .p3,
+.page-about .pattern-text .p7,
+.page-about .pattern-text .p8 {
+  animation-name: er-crawl-up;
+  animation-duration: 42s;
+}
+
+.page-license .pattern-text .p2,
+.page-license .pattern-text .p4,
+.page-press .pattern-text .p2,
+.page-press .pattern-text .p4 {
+  animation-name: er-crawl-down;
+  animation-duration: 46s;
+}
+
+.page-about .pattern-text .p1,
+.page-about .pattern-text .p3,
+.page-about .pattern-text .p5,
+.page-home .pattern-text .p6,
+.page-er .pattern-text .p6 {
+  animation-name: er-soft-pulse;
+  animation-duration: 18s;
+  animation-timing-function: ease-in-out;
+}
+
+.page-radio .pattern-text .p1,
+.page-radio .pattern-text .p3,
+.page-radio .pattern-text .p5,
+.page-er .pattern-text .p5,
+.page-links .pattern-text .p5,
+.page-press .pattern-text .p5 {
+  animation-name: er-parallax-left;
+  animation-duration: 40s;
+}
+
+.page-radio .pattern-text .p6,
+.page-radio .pattern-text .p7,
+.page-er .pattern-text .p7,
+.page-home .pattern-text .p7,
+.page-home .pattern-text .p8,
+.page-links .pattern-text .p8,
+.page-press .pattern-text .p8 {
+  animation-name: er-parallax-right;
+  animation-duration: 44s;
+}
+
+.pattern-text .code-mark {
+  animation: er-code-breathe 22s ease-in-out infinite;
+}
+
+/* Precision Blueprint slightly calmer */
+.concept-blueprint .pattern-text span {
+  animation-duration: calc(var(--text-motion, 36s));
+}
+.concept-blueprint.page-home .pattern-text .p1,
+.concept-blueprint.page-home .pattern-text .p3,
+.concept-blueprint.page-home .pattern-text .p5,
+.concept-blueprint.page-er .pattern-text .p1,
+.concept-blueprint.page-er .pattern-text .p3,
+.concept-blueprint.page-links .pattern-text .p1 { --text-motion: 38s; }
+.concept-blueprint.page-radio .pattern-text .p1,
+.concept-blueprint.page-radio .pattern-text .p3,
+.concept-blueprint.page-radio .pattern-text .p5,
+.concept-blueprint.page-er .pattern-text .p5,
+.concept-blueprint.page-links .pattern-text .p5,
+.concept-blueprint.page-press .pattern-text .p5 { --text-motion: 44s; }
+
+/* Isometric Signal slightly more cinematic */
+.concept-isometric.page-home .pattern-text .p1,
+.concept-isometric.page-home .pattern-text .p3,
+.concept-isometric.page-home .pattern-text .p5,
+.concept-isometric.page-er .pattern-text .p1,
+.concept-isometric.page-er .pattern-text .p3,
+.concept-isometric.page-links .pattern-text .p1 { animation-duration: 30s; }
+.concept-isometric.page-radio .pattern-text .p1,
+.concept-isometric.page-radio .pattern-text .p3,
+.concept-isometric.page-radio .pattern-text .p5,
+.concept-isometric.page-er .pattern-text .p5,
+.concept-isometric.page-links .pattern-text .p5,
+.concept-isometric.page-press .pattern-text .p5 { animation-duration: 34s; }
+.concept-isometric .pattern-text .code-mark { animation-duration: 18s; }
+
+@keyframes er-drift-left {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(-18px); }
+  100% { transform: translateX(0); }
+}
+@keyframes er-drift-right {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(18px); }
+  100% { transform: translateX(0); }
+}
+@keyframes er-crawl-up {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+  100% { transform: translateY(0); }
+}
+@keyframes er-crawl-down {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(14px); }
+  100% { transform: translateY(0); }
+}
+@keyframes er-parallax-left {
+  0% { transform: translate3d(0,0,0); }
+  50% { transform: translate3d(-24px,-6px,0); }
+  100% { transform: translate3d(0,0,0); }
+}
+@keyframes er-parallax-right {
+  0% { transform: translate3d(0,0,0); }
+  50% { transform: translate3d(22px,6px,0); }
+  100% { transform: translate3d(0,0,0); }
+}
+@keyframes er-soft-pulse {
+  0%, 100% { opacity: .12; }
+  50% { opacity: .20; }
+}
+@keyframes er-code-breathe {
+  0%, 100% { opacity: .035; transform: translate(-50%,-50%) scale(1); }
+  50% { opacity: .055; transform: translate(-50%,-50%) scale(1.015); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pattern-text span,
+  .pattern-text .code-mark {
+    animation: none !important;
+  }
+}
+
+
+/* ================================================================
+   FINAL MASTER — minimal foreground + accessible detail modal
+   ================================================================ */
+.concept-panel--compact {
+  width: min(600px, 100%);
+  padding: clamp(22px, 3vw, 32px);
+  background: rgba(247,243,234,.84);
+}
+.concept-panel--compact h1 {
+  font-size: clamp(2.35rem, 5vw, 5.2rem);
+}
+.concept-teaser {
+  margin: 14px 0 0;
+  max-width: 48ch;
+  color: var(--blue-gray-deep);
+  font-size: clamp(.94rem, 1.3vw, 1.05rem);
+  line-height: 1.65;
+}
+.detail-open-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  margin-top: 20px;
+  padding: 11px 18px;
+  border: 1px solid rgba(152,114,58,.48);
+  border-radius: 999px;
+  background: rgba(16,26,37,.92);
+  color: var(--ivory);
+  font: inherit;
+  font-size: .76rem;
+  font-weight: 800;
+  letter-spacing: .095em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 12px 34px rgba(16,26,37,.18);
+  transition: transform .2s ease, background-color .2s ease, border-color .2s ease;
+}
+.detail-open-button:hover {
+  transform: translateY(-2px);
+  background: rgba(30,47,64,.98);
+  border-color: rgba(215,184,120,.72);
+}
+.detail-open-button:focus-visible,
+.detail-modal__close:focus-visible {
+  outline: 3px solid rgba(215,184,120,.62);
+  outline-offset: 3px;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+.detail-modal[hidden] {
+  display: none;
+}
+.detail-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: clamp(16px, 4vw, 48px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .26s ease, visibility .26s ease;
+}
+.detail-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+.detail-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(200,215,227,.10), transparent 46%),
+    rgba(6,12,18,.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.detail-modal__panel {
+  position: relative;
+  z-index: 1;
+  width: min(880px, 100%);
+  max-height: min(82vh, 780px);
+  overflow: auto;
+  border: 1px solid rgba(200,215,227,.34);
+  border-radius: 22px 6px 22px 6px;
+  background:
+    linear-gradient(135deg, rgba(247,243,234,.97), rgba(236,228,214,.95));
+  color: var(--ink);
+  box-shadow: 0 34px 120px rgba(0,0,0,.46), inset 0 0 0 1px rgba(255,255,255,.62);
+  transform: translateY(18px) scale(.975);
+  transition: transform .28s cubic-bezier(.2,.75,.25,1);
+}
+.detail-modal.is-open .detail-modal__panel {
+  transform: translateY(0) scale(1);
+}
+.detail-modal__panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    linear-gradient(30deg, rgba(67,89,107,.045) 1px, transparent 1px),
+    linear-gradient(-30deg, rgba(67,89,107,.045) 1px, transparent 1px);
+  background-size: 52px 30px;
+  opacity: .55;
+}
+.detail-modal__close {
+  position: sticky;
+  top: 14px;
+  z-index: 4;
+  float: right;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  margin: 14px 14px -56px 0;
+  border: 1px solid rgba(67,89,107,.26);
+  border-radius: 50%;
+  background: rgba(247,243,234,.94);
+  color: var(--blue-gray-deep);
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(67,89,107,.14);
+}
+.detail-modal__close:hover {
+  color: var(--ink);
+  border-color: rgba(152,114,58,.52);
+  background: #fff;
+}
+.detail-modal__content {
+  position: relative;
+  z-index: 2;
+  padding: clamp(34px, 6vw, 68px);
+  padding-top: clamp(54px, 7vw, 76px);
+}
+.detail-modal__eyebrow {
+  margin: 0 54px 12px 0;
+  color: var(--gold-deep);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+.detail-modal h2 {
+  margin: 0 54px 22px 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 4.8vw, 4.2rem);
+  line-height: 1;
+  letter-spacing: -.035em;
+}
+.detail-modal p {
+  max-width: 72ch;
+  color: var(--blue-gray-deep);
+  font-size: .98rem;
+  line-height: 1.75;
+}
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 28px;
+}
+.detail-grid article {
+  min-height: 150px;
+  padding: 18px;
+  border: 1px solid rgba(67,89,107,.16);
+  border-radius: 12px 4px 12px 4px;
+  background: rgba(255,255,255,.52);
+}
+.detail-grid h3 {
+  margin: 0 0 8px;
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.05rem;
+}
+.detail-grid article p {
+  margin: 0;
+  font-size: .86rem;
+  line-height: 1.6;
+}
+.detail-notice {
+  margin-top: 26px;
+  padding: 16px 18px;
+  border-left: 3px solid var(--gold);
+  background: rgba(200,215,227,.22);
+  color: var(--blue-gray-deep);
+  font-size: .9rem;
+  line-height: 1.65;
+}
+.detail-link-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 24px;
+}
+.detail-link-list div {
+  display: grid;
+  grid-template-columns: minmax(120px, .6fr) 1.4fr;
+  gap: 16px;
+  padding: 14px 16px;
+  border: 1px solid rgba(67,89,107,.15);
+  background: rgba(255,255,255,.48);
+}
+.detail-link-list span {
+  color: var(--gold-deep);
+  font-size: .74rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.detail-link-list strong {
+  color: var(--blue-gray-deep);
+  font-size: .9rem;
+}
+.detail-small {
+  font-size: .82rem !important;
+}
+
+@media (max-width: 760px) {
+  .detail-modal { padding: 12px; align-items: end; }
+  .detail-modal__panel {
+    width: 100%;
+    max-height: 88vh;
+    border-radius: 18px 18px 0 0;
+  }
+  .detail-modal__content { padding: 60px 22px 30px; }
+  .detail-grid { grid-template-columns: 1fr; }
+  .detail-grid article { min-height: 0; }
+  .detail-link-list div { grid-template-columns: 1fr; gap: 5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .detail-open-button,
+  .detail-modal,
+  .detail-modal__panel {
+    transition: none !important;
+  }
+}
+
+
+/* ================================================================
+   About popup founder portrait revision
+   ================================================================ */
+.detail-modal__content--about {
+  display: grid;
+  gap: 22px;
+}
+
+.about-founder-card {
+  display: grid;
+  grid-template-columns: minmax(200px, 260px) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+  padding: 18px;
+  border: 1px solid rgba(200, 215, 227, 0.18);
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(247,243,234,0.08), rgba(200,215,227,0.04));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+}
+
+.about-founder-card__media {
+  margin: 0;
+}
+
+.about-founder-card__image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 18px;
+  border: 1px solid rgba(200, 215, 227, 0.22);
+  box-shadow: 0 18px 36px rgba(0,0,0,0.24);
+}
+
+.about-founder-card__body {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.about-founder-card__kicker {
+  margin: 0;
+  font-size: 0.74rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--warm-gold);
+}
+
+.about-founder-card__name {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.55rem, 1.2rem + 1vw, 2.1rem);
+  line-height: 1.08;
+  color: var(--ivory);
+}
+
+.about-founder-card__role {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--pale-blue);
+}
+
+.about-founder-card__statement {
+  margin: 0;
+  color: rgba(247,243,234,0.88);
+}
+
+.detail-grid--about {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.about-founder-card__copyright {
+  margin: 0;
+  padding-top: 4px;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: rgba(200,215,227,0.88);
+  border-top: 1px solid rgba(200, 215, 227, 0.14);
+}
+
+@media (max-width: 900px) {
+  .about-founder-card {
+    grid-template-columns: 1fr;
+  }
+
+  .about-founder-card__media {
+    max-width: 290px;
+  }
+
+  .detail-grid--about {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ================================================================
+   About popup wording and contrast refinement
+   ================================================================ */
+.about-founder-card {
+  border-color: rgba(67, 89, 107, 0.20);
+  background:
+    linear-gradient(145deg, rgba(200,215,227,0.32), rgba(247,243,234,0.86));
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.64),
+    0 18px 46px rgba(67,89,107,0.08);
+}
+
+.about-founder-card__kicker {
+  color: var(--gold-deep);
+  font-weight: 800;
+}
+
+.about-founder-card__name {
+  color: var(--ink);
+  font-weight: 700;
+  text-shadow: none;
+}
+
+.about-founder-card__role {
+  color: var(--blue-gray-deep);
+  font-weight: 700;
+}
+
+.about-founder-card__statement {
+  color: var(--blue-gray-deep);
+}
+
+.about-founder-card__copyright {
+  color: var(--blue-gray-deep);
+  border-top-color: rgba(67,89,107,0.18);
+}
+
+.detail-grid--about article {
+  background: rgba(255,255,255,0.66);
+  border-color: rgba(67,89,107,0.18);
+}
+
+.detail-grid--about h3 {
+  color: var(--ink);
+}
+
+.detail-grid--about p {
+  color: var(--blue-gray-deep);
+}
+
+
+/* ================================================================
+   Legal footer and AI-assisted production disclosure
+   ================================================================ */
+.page-stage {
+  min-height: calc(100vh - var(--header-h) - 142px);
+  padding-bottom: clamp(34px, 5vw, 62px);
+}
+
+.site-footer {
+  position: relative;
+  z-index: 24;
+  width: 100%;
+  padding: 0 0 18px;
+}
+
+.site-footer__inner {
+  width: min(1460px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 14px 18px;
+  border: 1px solid rgba(200, 215, 227, 0.16);
+  border-radius: 14px;
+  background: rgba(16, 26, 37, 0.74);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.16);
+}
+
+.site-footer p {
+  margin: 0;
+  font-size: 0.72rem;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+}
+
+.site-footer__copyright {
+  color: rgba(247, 243, 234, 0.92);
+}
+
+.site-footer__production,
+.site-footer__page-note {
+  margin-top: 4px !important;
+  color: rgba(200, 215, 227, 0.84);
+}
+
+.site-footer__page-note {
+  color: rgba(200, 215, 227, 0.68);
+}
+
+.site-footer__link {
+  color: #d7b878;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+.site-footer__link:hover,
+.site-footer__link:focus-visible {
+  color: #f7f3ea;
+  outline: none;
+}
+
+.site-footer__link--button {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.detail-modal__content--license {
+  display: grid;
+  gap: 18px;
+}
+
+.legal-disclosure {
+  padding: 20px;
+  border: 1px solid rgba(67, 89, 107, 0.18);
+  border-left: 4px solid #98723a;
+  border-radius: 14px;
+  background: linear-gradient(145deg, rgba(247, 243, 234, 0.96), rgba(200, 215, 227, 0.36));
+  color: #17212b;
+}
+
+.legal-disclosure__label {
+  margin: 0 0 6px !important;
+  color: #98723a !important;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.68rem !important;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.legal-disclosure h3 {
+  margin: 0 0 10px;
+  color: #17212b;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.35rem;
+}
+
+.legal-disclosure p {
+  color: #43596b !important;
+}
+
+.detail-grid--legal {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.detail-notice--production {
+  margin-top: 18px;
+}
+
+@media (max-width: 900px) {
+  .page-stage {
+    min-height: calc(100vh - var(--header-h) - 182px);
+  }
+
+  .site-footer__inner {
+    width: min(100% - 24px, 1460px);
+  }
+
+  .detail-grid--legal {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .site-footer__inner {
+    padding: 13px 14px;
+  }
+
+  .site-footer p {
+    font-size: 0.68rem;
+  }
+}
+
+
+/* ================================================================
+   Popup-integrated legal notice revision
+   The legal notice now lives inside each page popup instead of outside it.
+   ================================================================ */
+.detail-legal-box {
+  margin-top: 24px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(67, 89, 107, 0.16);
+  background: linear-gradient(145deg, rgba(17, 27, 38, 0.06), rgba(67, 89, 107, 0.10));
+  display: grid;
+  gap: 10px;
+}
+
+.detail-legal-box p {
+  margin: 0;
+  color: rgba(23, 33, 43, 0.92);
+  font-size: 0.9rem;
+  line-height: 1.62;
+}
+
+.detail-legal-box__copyright {
+  font-weight: 600;
+  color: #17212b;
+}
+
+.detail-legal-box__production,
+.detail-legal-box__note {
+  color: rgba(23, 33, 43, 0.86);
+}
+
+.detail-legal-box__link {
+  color: #8a6a2f;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(138, 106, 47, 0.35);
+}
+
+.detail-legal-box__link:hover,
+.detail-legal-box__link:focus-visible {
+  color: #5f4720;
+  border-bottom-color: rgba(95, 71, 32, 0.55);
+}
+
+@media (max-width: 640px) {
+  .detail-legal-box {
+    padding: 14px 15px;
+  }
+
+  .detail-legal-box p {
+    font-size: 0.86rem;
+  }
+}
+
+
+/* ================================================================
+   Public text revision: Links, Press, ER, and Live Listen
+   ================================================================ */
+.detail-link-list--public a,
+.detail-link-list--facts a {
+  color: var(--blue-gray-deep);
+  font-weight: 800;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(138, 106, 47, 0.34);
+}
+
+.detail-link-list--public a:hover,
+.detail-link-list--public a:focus-visible,
+.detail-link-list--facts a:hover,
+.detail-link-list--facts a:focus-visible {
+  color: var(--gold-deep);
+  border-bottom-color: rgba(138, 106, 47, 0.72);
+}
+
+.detail-grid--press,
+.detail-grid--er {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.listen-destination-card {
+  margin-top: 24px;
+  padding: 22px;
+  border: 1px solid rgba(67, 89, 107, 0.18);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 85% 18%, rgba(215,184,120,0.18), transparent 32%),
+    linear-gradient(145deg, rgba(200,215,227,0.32), rgba(255,255,255,0.66));
+}
+
+.listen-destination-card__label {
+  margin: 0 0 8px !important;
+  color: var(--gold-deep) !important;
+  font-size: 0.73rem !important;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.listen-destination-card h3 {
+  margin: 0 0 8px;
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.45rem;
+}
+
+.listen-destination-card p {
+  margin: 0;
+}
+
+.listen-destination-card__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 18px;
+  padding: 11px 16px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--ivory);
+  font-size: 0.84rem;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 10px 24px rgba(23,33,43,0.16);
+}
+
+.listen-destination-card__button:hover,
+.listen-destination-card__button:focus-visible {
+  background: var(--blue-gray-deep);
+}
+
+@media (max-width: 760px) {
+  .detail-grid--press,
+  .detail-grid--er {
+    grid-template-columns: 1fr;
+  }
+
+  .listen-destination-card__button {
+    width: 100%;
+  }
+}
