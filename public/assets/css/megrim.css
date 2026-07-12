@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Megrim&display=swap");
+
+:root {
+  --font-megrim: "Megrim", "Arial Narrow", system-ui, sans-serif;
+}
+
+.brand-name,
+.concept-panel h1,
+.detail-modal h2,
+.detail-modal h3,
+.detail-grid h3,
+.listen-destination-card h3,
+.legal-disclosure h3,
+.about-founder-card__name {
+  font-family: var(--font-megrim);
+  font-weight: 400;
+}
+
+.brand-code,
+.site-nav a,
+.nav-toggle,
+.concept-kicker,
+.detail-open-button,
+.detail-modal__eyebrow,
+.detail-link-list span,
+.listen-destination-card__label,
+.legal-disclosure__label,
+.pattern-text span,
+.pattern-text .code-mark {
+  font-family: var(--font-megrim);
+}
+
+.brand-name {
+  letter-spacing: 0.035em;
+}
+
+.brand-code,
+.site-nav a,
+.concept-kicker,
+.detail-modal__eyebrow,
+.detail-open-button {
+  letter-spacing: 0.14em;
+}
+
+.concept-panel h1 {
+  letter-spacing: 0.015em;
+  line-height: 1.04;
+}
+
+.detail-modal h2 {
+  letter-spacing: 0.018em;
+  line-height: 1.04;
+  text-shadow:
+    0.22px 0 currentColor,
+    -0.22px 0 currentColor,
+    0 0.22px currentColor,
+    0 -0.22px currentColor;
+}
+
+.detail-modal h3,
+.detail-grid h3,
+.listen-destination-card h3,
+.legal-disclosure h3 {
+  letter-spacing: 0.025em;
+  text-shadow:
+    0.14px 0 currentColor,
+    -0.14px 0 currentColor;
+}
+
+.site-nav a,
+.detail-open-button,
+.nav-toggle {
+  font-weight: 700;
+}
+
+@media (max-width: 760px) {
+  .detail-modal h2 {
+    text-shadow:
+      0.18px 0 currentColor,
+      -0.18px 0 currentColor,
+      0 0.18px currentColor,
+      0 -0.18px currentColor;
+  }
+}
+
+@media (max-width: 520px) {
+  .concept-panel h1 {
+    line-height: 1.08;
+  }
+}
