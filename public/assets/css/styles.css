@@ -1716,4 +1716,107 @@ h3,
 }
  
 
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-width: 0;
+  text-decoration: none;
+}
 
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+
+  width: 3.25rem;
+  height: 3.25rem;
+
+  margin: 0;
+  padding: 0;
+
+  position: static;
+  transform: none;
+  rotate: none;
+
+  border: 1px solid rgba(215, 184, 120, 0.45);
+  border-radius: 0.2rem;
+  overflow: hidden;
+}
+
+.brand-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.brand-name,
+.brand-code {
+  display: block;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.brand-mark__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: rotate(-45deg);
+}
+
+
+
+.brand-symbol-figure {
+  width: min(100%, 34rem);
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.brand-symbol-figure {
+  width: 100%;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.brand-symbol-guide__image {
+  display: block;
+  width: 192px;
+  height: 192px;
+  max-width: 100%;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.brand-symbol-figure figcaption {
+  max-width: 28rem;
+  margin: 0.8rem auto 0;
+  color: #43596B;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.brand-symbol-figure figcaption {
+  margin-top: 0.8rem;
+  color: #d7b878;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.brand-symbol-elements,
+.brand-symbol-identity,
+.brand-symbol-colors,
+.brand-symbol-summary {
+  margin-top: 2rem;
+}
+
+.symbol-meaning-card p + p {
+  margin-top: 0.75rem;
+}
+
+.brand-symbol-colors code {
+  color: #d7b878;
+}
